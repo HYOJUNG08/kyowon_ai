@@ -21,6 +21,12 @@ quizzes = blank.sample(n = 3)
 
 def home():
     st.set_page_config(page_title = "Ai야어여", layout="wide", initial_sidebar_state="collapsed")
+    st.markdown("""
+                <style>
+                div.stButton {
+                    text-align: center;
+                }
+                </style>""", unsafe_allow_html=True)
     
     if state.condition != 'home':
         state.prev_condition = state.condition
@@ -31,8 +37,7 @@ def home():
         st.markdown(f"<h1 style='font-size:70px; text-align: center; color: black;'>AI야어여</h1>", unsafe_allow_html=True)
 
         for _ in range(6): st.write('')
-        c1, c2, c3 = st.columns([1, 0.2, 1])
-        if c2.button("시작하기"):
+        if st.button("시작하기"):
             state.condition = "assessment"
             st.experimental_rerun()
 
@@ -144,6 +149,12 @@ def assessment():
             
 def test_quiz_score2(score):
     st.set_page_config(page_title="진단평가 결과", layout="wide", initial_sidebar_state="collapsed")
+    st.markdown("""
+                <style>
+                div.stButton {
+                    text-align: center;
+                }
+                </style>""", unsafe_allow_html=True)
     
     if state.condition == "test_quiz_score":
         st.markdown(f"<h1 style='text-align: center; color: gray;'>AI야어여 진단평가</h1>", unsafe_allow_html=True)
@@ -177,7 +188,7 @@ def test_quiz_score2(score):
         
         container1 = st.container()
         with container1:
-            c1, c2, c3, c4, c5 = st.columns([1, 0.2, 0.2, 0.2, 1])
+            c1, c2, c3, c4, c5 = st.columns([0.5, 0.1, 0.2, 0.1, 0.5])
             home_button = c2.button("홈으로")
             next_button = c4.button("다음")
             

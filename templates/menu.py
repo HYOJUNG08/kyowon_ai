@@ -16,6 +16,17 @@ TOPIC = {
 def choose_difficulty():
     st.set_page_config(page_title = "난이도 선택", layout="wide", initial_sidebar_state="collapsed")
     st.image('templates/user.png', width=150)
+    st.markdown("""
+                <style>
+                [data-testid="stForm"] {
+                        background-color: rgb(255, 255, 218);
+                        border-style: line;
+                        } 
+                div.stButton {
+                    text-align: center;
+                }
+                </style>""", unsafe_allow_html=True)
+
 
 
     if state.condition != 'choose_difficulty':
@@ -34,8 +45,7 @@ def choose_difficulty():
             st.markdown(f"<h1 style='text-align: center; color: black;'>초급</h1>", unsafe_allow_html=True)
             for _ in range(2):
                 st.write('')
-            cc1, cc2, cc3 = st.columns([1, 0.6, 1])
-            submit = cc2.form_submit_button("선택")
+            submit = st.form_submit_button("선택")
             if submit:
                 state.difficulty = '초급'
                 state.condition = "choose_topic"
@@ -48,8 +58,7 @@ def choose_difficulty():
             st.markdown(f"<h1 style='text-align: center; color: black;'>중급</h1>", unsafe_allow_html=True)
             for _ in range(2):
                 st.write('')
-            cc1, cc2, cc3 = st.columns([1, 0.6, 1])
-            submit = cc2.form_submit_button("선택", disabled=True)
+            submit = st.form_submit_button("선택", disabled=True)
             if submit:
                 state.difficulty = '중급'
                 state.condition = "choose_topic"
@@ -62,8 +71,7 @@ def choose_difficulty():
             st.markdown(f"<h1 style='text-align: center; color: black;'>고급</h1>", unsafe_allow_html=True)
             for _ in range(2):
                 st.write('')
-            cc1, cc2, cc3 = st.columns([1, 0.6, 1])
-            submit = cc2.form_submit_button("선택", disabled=True)
+            submit = st.form_submit_button("선택", disabled=True)
             if submit:
                 state.difficulty = '고급'
                 state.condition = "choose_topic"
@@ -76,8 +84,7 @@ def choose_difficulty():
             st.markdown(f"<h1 style='text-align: center; color: black;'>자유주제</h1>", unsafe_allow_html=True)
             for _ in range(2):
                 st.write('')
-            cc1, cc2, cc3 = st.columns([1, 0.6, 1])
-            submit = cc2.form_submit_button("선택")
+            submit = st.form_submit_button("선택")
             if submit:
                 state.difficulty = '자유주제'
                 state.condition = "choose_topic"
@@ -87,6 +94,20 @@ def choose_difficulty():
 def choose_topic(difficulty):
     st.set_page_config(page_title = "Topic",layout="wide", initial_sidebar_state="collapsed")
     st.image('templates/user.png', width=150)
+    st.markdown("""
+                <style>
+                [data-testid="stForm"] {
+                        background-color: rgb(255, 255, 218);
+                        } 
+                div.stButton {
+                    text-align: center;
+                }
+                div.stButton > button:first-child {
+                    background-color: rgb(254, 174, 0);
+                    color:White;
+                    height:auto;   
+                }
+                </style>""", unsafe_allow_html=True)
 
     
     if state.condition != 'choose_topic':
@@ -108,8 +129,7 @@ def choose_topic(difficulty):
                 st.markdown(f"<h1 style='text-align: center; color: black;'>{topics[0]}</h1>", unsafe_allow_html=True)
                 for _ in range(2):
                     st.write('')
-                cc1, cc2, cc3 = st.columns([1, 0.4, 1])
-                submit = cc2.form_submit_button("선택")
+                submit = st.form_submit_button("선택")
                 if submit:
                     state.topic = topics[0]
                     state.condition = "choose_type"
@@ -122,8 +142,7 @@ def choose_topic(difficulty):
                 st.markdown(f"<h1 style='text-align: center; color: black;'>{topics[1]}</h1>", unsafe_allow_html=True)
                 for _ in range(2):
                     st.write('')
-                cc1, cc2, cc3 = st.columns([1, 0.4, 1])
-                submit = cc2.form_submit_button("선택")
+                submit = st.form_submit_button("선택")
                 if submit:
                     state.topic = topics[1]
                     state.condition = "choose_type"
@@ -145,6 +164,14 @@ def choose_type():
     st.set_page_config(page_title = "Type",layout="wide", initial_sidebar_state="collapsed")
     st.image('templates/user.png', width=150)
 
+    st.markdown("""
+                <style>
+                [data-testid="stForm"] {
+                        background-color: rgb(255, 255, 218);
+                        border-style: line;
+                        } 
+                </style>""", unsafe_allow_html=True)
+
     if state.condition != 'choose_type':
         state.prev_conditon = state.condition
         return state.condition
@@ -161,7 +188,6 @@ def choose_type():
             st.markdown(f"<h1 style='text-align: center; color: black;'>단어</h1>", unsafe_allow_html=True)
             for _ in range(2):
                 st.write('')
-            cc1, cc2, cc3 = st.columns([0.2, 1, 0.2])
             m = st.markdown("""
                 <style>
                 div.stButton {
@@ -175,8 +201,8 @@ def choose_type():
                 }
                 </style>""", unsafe_allow_html=True)
 
-            learning = cc2.form_submit_button("📖   학습하기")
-            quiz = cc2.form_submit_button("🧩   퀴즈풀기")
+            learning = st.form_submit_button("📖   학습하기")
+            quiz = st.form_submit_button("🧩   퀴즈풀기")
             if learning:
                 state.type = '단어'
                 state.condition = 'learn'
@@ -208,7 +234,6 @@ def choose_type():
             st.markdown(f"<h1 style='text-align: center; color: black;'>문장</h1>", unsafe_allow_html=True)
             for _ in range(2):
                 st.write('')
-            cc1, cc2, cc3 = st.columns([0.2, 1, 0.2])
             m = st.markdown("""
                 <style>
                 div.stButton > button:first-child {
@@ -222,8 +247,8 @@ def choose_type():
                 }
                 </style>""", unsafe_allow_html=True)
 
-            learning = cc2.form_submit_button("📖   학습하기")
-            quiz = cc2.form_submit_button("🧩   퀴즈풀기")
+            learning = st.form_submit_button("📖   학습하기")
+            quiz = st.form_submit_button("🧩   퀴즈풀기")
             if learning:
                 state.type = '문장'
                 state.condition = 'learn'
